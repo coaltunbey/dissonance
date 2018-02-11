@@ -1,0 +1,351 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+{% load static %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<head>
+       <!--- basic page needs
+   ================================================== -->
+   <meta charset="utf-8">
+	<title>Dissonance - Music Recommendation Engine</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+   <!-- mobile specific metas
+   ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+ 	<!-- CSS
+   ================================================== -->
+    <link rel="stylesheet" href="{% static "spotifyapp/css/base.css" %}">
+    <link rel="stylesheet" href="{% static "spotifyapp/css/vendor.css" %}">
+    <link rel="stylesheet" href="{% static "spotifyapp/css/main.css" %}">
+
+   <!-- script
+   ================================================== -->
+
+	<script src="{% static "spotifyapp/js/modernizr.js" %}"></script>
+	<script src="{% static "spotifyapp/js/pace.min.js" %}"></script>
+
+   <!-- favicons
+	================================================== -->
+	<link rel="icon" type="image/png" href="{% static "spotifyapp/images/logo.png" %}">
+
+    <script src="{% static "spotifyapp/js/jquery-2.1.3.min.js" %}"></script>
+    <script src="{% static "spotifyapp/js/plugins.js" %}"></script>
+    <script src="{% static "spotifyapp/js/main.js" %}"></script>
+</head>
+
+<body>
+    <div id="features" class="container">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="form-area">
+                <form role="form" action="/post/" method="post">
+                {% csrf_token %}
+                    <h2 style="margin-bottom: 25px; text-align: center;" id="featuresh2">DISSONANCE</h2>
+                    <div class="text-center">
+                        <h4>
+                            Base Song
+                        </h4>
+                    </div>
+                    <hr>
+                    <div class="col-xs-12" style="height:20px;"></div>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="base_song" value="{{ val_base_song }}" name="base_song" placeholder="spotify:track:0iuyxMDRdQYqZFfmjelvGH">
+                    </div>
+                    <div id="base_song_err" style="display:none;">
+                    </div>
+                    <div class="col-xs-12" style="height:20px;"></div>
+                    <div class="text-center">
+                        <h4>
+                            Importance Preferences
+                        </h4>
+                    </div>
+                    <hr>
+                    <div class="col-xs-12" style="height:20px;"></div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            Danceability
+                        </div>
+                        <div class="col-md-6">
+                            <div id="range_deval" class="text-center" style="height: 15px; margin-bottom: 10px;">{{ val_de }}</div>
+                            <div class="form-group">
+                                <input type="range" min="-5" max="5" value="{{ val_de }}" step="0.1" class="slider" id="range_de" name="range_de" onchange="updateTextInput(this.id+'val', this.value);">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            Energy
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            Danceability
+                        </div>
+                        <div class="col-md-6">
+                            <div id="range_dlval" class="text-center" style="height: 15px; margin-bottom: 10px;">{{ val_dl }}</div>
+                            <div class="form-group">
+                                <input type="range" min="-5" max="5" value="{{ val_dl }}" step="0.1" class="slider" id="range_dl" name="range_dl" onchange="updateTextInput(this.id+'val', this.value);">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            Liveness
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            Danceability
+                        </div>
+                        <div class="col-md-6">
+                            <div id="range_dvval" class="text-center" style="height: 15px; margin-bottom: 10px;">{{ val_dv }}</div>
+                            <div class="form-group">
+                                <input type="range" min="-5" max="5" value="{{ val_dv }}" step="0.1" class="slider" id="range_dv" name="range_dv" onchange="updateTextInput(this.id+'val', this.value);">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            Valence
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            Energy
+                        </div>
+                        <div class="col-md-6">
+                            <div id="range_elval" class="text-center" style="height: 15px; margin-bottom: 10px;">{{ val_el }}</div>
+                            <div class="form-group">
+                                <input type="range" min="-5" max="5" value="{{ val_el }}" step="0.1" class="slider" id="range_el" name="range_el" onchange="updateTextInput(this.id+'val', this.value);">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            Liveness
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            Energy
+                        </div>
+                        <div class="col-md-6">
+                            <div id="range_evval" class="text-center" style="height: 15px; margin-bottom: 10px;">{{ val_ev }}</div>
+                            <div class="form-group">
+                                <input type="range" min="-5" max="5" value="{{ val_ev }}" step="0.1" class="slider" id="range_ev" name="range_ev" onchange="updateTextInput(this.id+'val', this.value);">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            Valence
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            Liveness
+                        </div>
+                        <div class="col-md-6">
+                            <div id="range_lvval" class="text-center" style="height: 15px; margin-bottom: 10px;">{{ val_lv }}</div>
+                            <div class="form-group">
+                                <input type="range" min="-5" max="5" value="{{ val_lv }}" step="0.1" class="slider" id="range_lv" name="range_lv" onchange="updateTextInput(this.id+'val', this.value);">
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            Valence
+                        </div>
+                    </div>
+                    <div class="col-xs-12" style="height:20px;"></div>
+                    <div class="text-center">
+                        <input type="submit" id="submit" class="button large animate-this">
+                        <div id="error" style="display:none;" class="alert alert-danger"  role="alert"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    function updateTextInput(id, val) {
+      $('#'+id).text(val);
+    }
+
+    $(document).ready(function() {
+        $("#submit").click(function(e){
+
+            // Prevent default submit button functionality
+            e.preventDefault();
+
+            // Get user inputs onClick
+            var base_song = $("#base_song").val();
+            var range_de = parseFloat($("#range_de").val());
+            var range_dl = parseFloat($("#range_dl").val());
+            var range_dv = parseFloat($("#range_dv").val());
+            var range_el = parseFloat($("#range_el").val());
+            var range_ev = parseFloat($("#range_ev").val());
+            var range_lv = parseFloat($("#range_lv").val());
+
+             // Range correction
+            if (range_de < 0){
+                range_de = -1/range_de;
+            }
+            if (range_dl < 0){
+                range_dl = -1/range_dl;
+            }
+            if (range_dv < 0){
+                range_dv = -1/range_dv;
+            }
+            if (range_el < 0){
+                range_el = -1/range_el;
+            }
+            if (range_ev < 0){
+                range_ev = -1/range_ev;
+            }
+            if (range_lv < 0){
+                range_lv = -1/range_lv;
+            }
+
+            if (range_de === 0){
+                range_de = 1;
+            }
+            if (range_dl === 0){
+                range_dl = 1;
+            }
+            if (range_dv === 0){
+                range_dv = 1;
+            }
+            if (range_el === 0){
+                range_el = 1;
+            }
+            if (range_ev === 0){
+                range_ev = -1/range_ev;
+            }
+            if (range_lv === 0){
+                range_lv = 1;
+            }
+
+            // Create necessary fields
+            var range_dd = 1;
+            var range_ee = 1;
+            var range_ll = 1;
+            var range_vv = 1;
+
+            var range_ed = 1/range_de;
+            var range_ld = 1/range_dl;
+            var range_vd = 1/range_dv;
+            var range_le = 1/range_el;
+            var range_ve = 1/range_ev;
+            var range_vl = 1/range_lv;
+
+            // Data validation
+            if (base_song.length === 0) {
+                window.alert("Please enter a base song!");
+                throw new Error("Something went badly wrong!");
+            } else if (!(base_song.match("^spotify:track:"))){
+                window.alert("You did not enter a Spotify URI!");
+                throw new Error("Something went badly wrong!");
+            } else if (base_song.length !== 36) {
+                window.alert("A Spotify URI contains 36 characters!");
+                throw new Error("Something went badly wrong!");
+            }
+
+            var col_avg_1 = range_dd+range_ed+range_ld+range_vd;
+            var col_avg_2 = range_de+range_ee+range_le+range_ve;
+            var col_avg_3 = range_dl+range_el+range_ll+range_vl;
+            var col_avg_4 = range_dv+range_ev+range_lv+range_vv;
+            console.log("console avgs");
+            console.log(col_avg_1);
+            console.log(col_avg_2);
+            console.log(col_avg_3);
+            console.log(col_avg_4);
+            var normalized_range_dd = range_dd/col_avg_1;
+            var normalized_range_ed = range_ed/col_avg_1;
+            var normalized_range_ld = range_ld/col_avg_1;
+            var normalized_range_vd = range_vd/col_avg_1;
+            console.log("normalized");
+            console.log(normalized_range_dd);
+            console.log(normalized_range_ed);
+            console.log(normalized_range_ld);
+            console.log(normalized_range_vd);
+            var normalized_range_de = range_de/col_avg_2;
+            var normalized_range_ee = range_ee/col_avg_2;
+            var normalized_range_le = range_le/col_avg_2;
+            var normalized_range_ve = range_ve/col_avg_2;
+
+            var normalized_range_dl = range_dl/col_avg_3;
+            var normalized_range_el = range_el/col_avg_3;
+            var normalized_range_ll = range_ll/col_avg_3;
+            var normalized_range_vl = range_vl/col_avg_3;
+
+            var normalized_range_dv = range_dv/col_avg_4;
+            var normalized_range_ev = range_ev/col_avg_4;
+            var normalized_range_lv = range_lv/col_avg_4;
+            var normalized_range_vv = range_vv/col_avg_4;
+
+            // Priorities
+            var priority_d = (normalized_range_dd + normalized_range_de + normalized_range_dl + normalized_range_dv) / 4;
+            var priority_e = (normalized_range_ed + normalized_range_ee + normalized_range_el + normalized_range_ev) / 4;
+            var priority_l = (normalized_range_ld + normalized_range_le + normalized_range_ll + normalized_range_lv) / 4;
+            var priority_v = (normalized_range_vd + normalized_range_ve + normalized_range_vl + normalized_range_vv) / 4;
+            console.log("priorities");
+            console.log(priority_d);
+            console.log(priority_e);
+            console.log(priority_l);
+            console.log(priority_v);
+            var ax_1 = range_dd*priority_d + range_de*priority_e + range_dl*priority_l + range_dv*priority_v;
+            var ax_2 = range_ed*priority_d + range_ee*priority_e + range_el*priority_l + range_ev*priority_v;
+            var ax_3 = range_ld*priority_d + range_le*priority_e + range_ll*priority_l + range_lv*priority_v;
+            var ax_4 = range_vd*priority_d + range_ve*priority_e + range_vl*priority_l + range_vv*priority_v;
+            console.log("ax");
+            console.log(ax_1);
+            console.log(ax_2);
+            console.log(ax_3);
+            console.log(ax_4);
+            var lambda_max_1 = ax_1 / priority_d;
+            var lambda_max_2 = ax_2 / priority_e;
+            var lambda_max_3 = ax_3 / priority_l;
+            var lambda_max_4 = ax_4 / priority_v;
+            console.log("lambda max");
+            console.log(lambda_max_1);
+            console.log(lambda_max_2);
+            console.log(lambda_max_3);
+            console.log(lambda_max_4);
+            var average_lambda_max = (lambda_max_1 + lambda_max_2 + lambda_max_3 + lambda_max_4) / 4 ;
+            console.log("Average lambda max : " + average_lambda_max);
+
+            var consistency_index = (average_lambda_max-4) / 3;
+            console.log("Consistency index : " + consistency_index);
+
+            var consistency_ratio = consistency_index / 0.9;
+            console.log("Consistency ratio : " + consistency_ratio);
+
+            if (!(consistency_ratio < 0.1)){
+                window.alert("Preferences are not consistent!");
+                throw new Error("Something went badly wrong!");
+            } else {
+                // Send user inputs to django via AJAX call
+                $.ajax({
+                     type:"POST",
+                     url:"/post/",
+                     beforeSend: function() { $('body').addClass("loading"); },
+                     complete: function() { $('body').removeClass("loading"); },
+                     data: {
+                            csrfmiddlewaretoken: '{{ csrf_token }}',
+                            'base_song'  : base_song,
+                            'priority_d' : priority_d,
+                            'priority_e' : priority_e,
+                            'priority_l' : priority_l,
+                            'priority_v' : priority_v,
+                            'val_de'     : range_de,
+                            'val_dl'     : range_dl,
+                            'val_dv'     : range_dv,
+                            'val_el'     : range_el,
+                            'val_ev'     : range_ev,
+                            'val_lv'     : range_lv
+                     },
+                     success: function(data){
+                         $('body').html(data);
+                     }
+                });
+            }
+        });
+    });
+</script>

@@ -1,0 +1,143 @@
+{# Load the tag library #}
+{% load bootstrap3 %}
+{% load static %}
+
+{# Load CSS and JavaScript #}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+<head>
+       <!--- basic page needs
+   ================================================== -->
+   <meta charset="utf-8">
+	<title>Dissonance - Music Recommendation Engine</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+   <!-- mobile specific metas
+   ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+ 	<!-- CSS
+   ================================================== -->
+    <link rel="stylesheet" href="{% static "spotifyapp/css/base.css" %}">
+    <link rel="stylesheet" href="{% static "spotifyapp/css/vendor.css" %}">
+    <link rel="stylesheet" href="{% static "spotifyapp/css/main.css" %}">
+
+   <!-- script
+   ================================================== -->
+
+	<script src="{% static "spotifyapp/js/plotly-latest.min.js" %}"></script>
+	<script src="{% static "spotifyapp/js/modernizr.js" %}"></script>
+	<script src="{% static "spotifyapp/js/pace.min.js" %}"></script>
+
+   <!-- favicons
+	================================================== -->
+	<link rel="icon" type="image/png" href="{% static "spotifyapp/images/logo.png" %}">
+
+    <script src="{% static "spotifyapp/js/jquery-2.1.3.min.js" %}"></script>
+    <script src="{% static "spotifyapp/js/plugins.js" %}"></script>
+    <script src="{% static "spotifyapp/js/main.js" %}"></script>
+</head>
+<body>
+    <div id="features" class="container">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <div class="form-area">
+                <form role="form" action="/post/" method="post">
+                {% csrf_token %}
+                    <h2 style="margin-bottom: 25px; text-align: center;" id="featuresh2">DISSONANCE</h2>
+                    <div class="text-center">
+                        <h4>
+                            Priority Vector
+                        </h4>
+                    </div>
+                    <hr>
+                    <div class="col-xs-12" style="height:20px;"></div>
+                    <div style="text-align:center;">
+                        <i>Your final playlist has been prepared according to these values : </i><br>
+                        <br>
+                        Danceability : <strong> {{ priority_d }} </strong> <br>
+                        Energy : <strong> {{ priority_e }} </strong> <br>
+                        Liveness : <strong> {{ priority_l }} </strong> <br>
+                        Valence : <strong> {{ priority_v }} </strong>
+                    </div>
+                    <div class="col-xs-12" style="height:20px;"></div>
+                    <div class="col-xs-12" style="height:20px;"></div>
+                    <div class="text-center">
+                        <h4>
+                            Final Playlist
+                        </h4>
+                    </div>
+                    <hr>
+                    <div class="col-xs-12" style="height:20px;"></div>
+                    <div style="text-align:center;">
+                        <iframe src="https://open.spotify.com/embed?uri={{ uri }}" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>
+                    </div>
+                    <div class="col-xs-12" style="height:20px;"></div>
+                    <div class="col-xs-12" style="height:20px;"></div>
+                    <div class="text-center">
+                        <h4>
+                            Tempo Analysis
+                        </h4>
+                    </div>
+                    <hr>
+                    <div class="col-xs-12" style="height:20px;"></div>
+                    <div class="col-xs-12" style="height:20px;"></div>
+                    <div id="plot"></div>
+
+                    <div class="col-xs-12" style="height:20px;"></div>
+                    <div style="display: block;">
+                        <a href="/" id="submit" class="button large animate-this"><< HOME</a>
+                        <a href="/app" id="submit" class="button large animate-this">< BACK</a>
+                        <a href="/app" id="submit" class="button large animate-this pull-right">TRY ANOTHER ANALYSIS >></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</body>
+
+<script type="text/javascript">
+    // plot
+    var trace1 = {
+      x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      y: {{ todays_top_ten_hits_tempo }},
+      type: 'scatter',
+        line: {
+        color: '#000000',
+      },
+        name:"Today's Top 10 Hits"
+    };
+    var trace2 = {
+      x: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      y: {{ final_playlist_tempo }},
+      mode: 'lines+markers',
+        name:"Dissonance Final Playlist",
+      marker: {
+        color: '#1dba53',
+        size: 7
+      },
+      line: {
+        color: '#1dba53',
+        width: 1
+      }
+    };
+
+    var layout = {
+        title:'Tempo Analysis Of Dissonance Final Playlist',
+        legend: {"orientation": "h"},
+    xaxis: {
+        dtick: 1,
+      },
+      yaxis: {
+        title: 'Tempo (bpm)'
+
+      }
+    };
+
+    var data = [trace1, trace2];
+    Plotly.newPlot('plot', data, layout);
+
+</script>

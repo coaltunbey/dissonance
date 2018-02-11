@@ -1,0 +1,405 @@
+{% load static %}
+
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+   <!--- basic page needs
+   ================================================== -->
+   <meta charset="utf-8">
+	<title>Dissonance - Music Recommendation Engine</title>
+	<meta name="description" content="">  
+	<meta name="author" content="">
+
+   <!-- mobile specific metas
+   ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+ 	<!-- CSS
+   ================================================== -->
+    <link rel="stylesheet" href="{% static "spotifyapp/css/base.css" %}">
+    <link rel="stylesheet" href="{% static "spotifyapp/css/vendor.css" %}">
+    <link rel="stylesheet" href="{% static "spotifyapp/css/main.css" %}">
+
+   <!-- script
+   ================================================== -->
+
+	<script src="{% static "spotifyapp/js/modernizr.js" %}"></script>
+	<script src="{% static "spotifyapp/js/pace.min.js" %}"></script>
+
+   <!-- favicons
+	================================================== -->
+	<link rel="icon" type="image/png" href="{% static "spotifyapp/images/logo.png" %}">
+
+</head>
+
+<body id="top">
+	
+	<!-- header 
+   ================================================== -->
+   <header class="main-header">
+   	
+   	<div class="logo">
+	      <a href="index.html">DISSONANCE</a>
+	   </div> 
+
+	   <a class="menu-toggle" href="#"><span>Menu</span></a>   	
+
+   </header>
+
+   <!-- main navigation 
+   ================================================== -->
+   <nav id="menu-nav-wrap">
+
+   	<h3>Navigation</h3>   	
+		<ul class="nav-list">
+			<li><a class="smoothscroll" href="#intro" title="">Home</a></li>
+			<li><a class="smoothscroll" href="#infos" title="">Product Info</a></li>
+            <li><a class="smoothscroll" href="#features" title="">Features</a></li>
+			<li><a class="smoothscroll" href="#app" title="">Try Dissonance Now!</a></li>
+            <li><a class="smoothscroll" href="#stats" title="">Who We Are?</a></li>
+        </ul>
+	</nav> <!-- /menu-nav-wrap -->
+
+
+	<!-- main content wrap
+   ================================================== -->
+   <div id="main-content-wrap">
+
+
+		<!-- main content wrap
+   	================================================== -->
+   	<section id="intro">
+
+		   <!-- <div class="shadow-overlay"></div> -->
+		   
+		   <div class="row intro-content">
+		   	<div class="col-twelve">
+
+		   		<h3 class="animate-intro">Music recommendation engine</h3>
+
+					<h1 class="animate-intro">
+                        DISSONANCE
+					</h1>
+					
+					<div class="buttons">
+						<a class="button stroke smoothscroll animate-intro" href="#features" title="">HOW DOES IT WORK?</a>
+						<a class="button stroke smoothscroll animate-intro" href="#app" title="">TRY NOW!</a>
+					</div>					
+
+                <img src="{% static "spotifyapp/images/app-screenshot-big.jpg" %}" alt="" class="animate-intro">
+
+			  	</div> <!-- /twelve --> 		   			
+		   </div> <!-- /row -->   
+
+		</section> <!-- /intro -->
+
+
+		<!-- infos
+   	================================================== -->
+   	<section id="infos">
+
+   		<div class="info-entry">
+
+   			<div class="half-grey"></div>
+
+   			<div class="row info-entry-content">
+
+   				<div class="media-wrap">
+   					<div class="media animate-this"  data-animate="fadeInRight">
+   						<img src="{% static "spotifyapp/images/app-screenshot-small.jpg" %}" alt="">
+   					</div>   				      				
+   				</div>
+
+   				<div class="col-six text-part">   				
+   					
+   					<h5 class="animate-this" data-animate="fadeInLeft">MUSIC ANALYTICS</h5>
+   					<h2 class="animate-this" data-animate="fadeInLeft">ADVANCED MUSICAL TASTE ANALYSIS</h2>
+
+   					<p class="animate-this" data-animate="fadeInLeft">Unlike any other music recommending engines, Dissonance takes into consideration th e user's specific musical choices using the good old AHP algorithm, after that it applies a consistency test to see if user preferences are consistent, than runs the unique recommendation algorithm.</p>
+   			 					
+   				</div>   				
+   				
+   			</div> <!-- /info-entry-content -->
+
+   		</div> <!-- /info-entry -->
+
+   		<div class="info-entry">
+
+   			<div class="half-grey"></div>
+
+   			<div class="row info-entry-content">
+   			
+	            <div class="media-wrap">
+	            	<div class="media animate-this" data-animate="fadeInLeft">
+	            		<div class="fluid-video-wrapper">
+		               <iframe src="https://www.youtube.com/embed/NCtzkaL2t_Y"> width="500" height="300" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe> 
+		            </div>
+	            	</div>   				
+	   			</div>
+
+	   			<div class="col-six text-part">   				
+   					
+   					<h5 class="animate-this" data-animate="fadeInRight">QUALITY</h5>
+   					<h2 class="animate-this" data-animate="fadeInRight">ALWAYS LISTEN TO GOOD MUSIC</h2>
+
+   					<p class="animate-this" data-animate="fadeInRight">You can count on us. We know that Dissonance is always seeking for quality music.</p>
+   			 					
+   				</div>
+
+   			</div> <!-- /info-entry-content -->
+
+   		</div> <!-- /info-entry -->
+
+   	</section> <!-- infos -->
+   			<!-- features
+   	================================================== -->
+		<section id="features">
+
+			<div class="row section-intro group animate-this">	
+	   		<div class="col-twelve with-bottom-line">
+
+	   			<h2 class="">HOW DOES IT WORK?</h2>
+
+	   			<p class="lead">It's much more easier to find and listen to music that you most probably would like. Use Dissonance's unique music recommendation algorithm and get ready to listen playlist prepared for your preferences.</p>
+
+	   		</div>   		
+	   	</div>
+
+			<div class="row features-wrap">
+					     		
+				<div class="features-list block-1-3 block-s-1-2 block-tab-full">
+
+					<div class="bgrid feature animate-this">	
+
+						<span class="feature-count">01.</span>            
+
+					   <div class="feature-content">
+
+              	   	<h3>Base Song</h3>
+
+							<p>Select a base song first. This song will be used later while detecting possible songs to recommend.
+						   </p>
+						         		
+						</div> 	         	 
+
+					</div> <!-- /bgrid -->
+
+					<div class="bgrid feature animate-this">	
+
+						<span class="feature-count">02.</span>            
+
+					   <div class="feature-content">
+
+              	   	<h3>Musical Taste Metrics</h3>
+
+							<p>Dissonance takes into consideration these four musical taste metrics :
+								- Danceability
+								- Energy
+								- Liveness
+								- Valence
+						   </p>
+						         		
+						</div> 	         	 
+
+					</div> <!-- /bgrid -->
+
+					<div class="bgrid feature animate-this">	
+
+						<span class="feature-count">03.</span>            
+
+					   <div class="feature-content">
+
+              	   	<h3>User Preferences</h3>
+
+							<p>After that user enters his preferences and says "Danceability is 5x important than valence for me."
+						   </p>
+						         		
+						</div> 	         	 
+
+					</div> <!-- /bgrid -->
+
+					<div class="bgrid feature animate-this">	
+
+						<span class="feature-count">04.</span>            
+
+					   <div class="feature-content">
+
+              	   	<h3>Dissonance Does It's Work</h3>
+
+							<p>After user clicks to "SUBMIT" button, Dissonance takes all of these entered inputs and runs it's unique algorithm.
+						   </p>
+						         		
+						</div> 	         	 
+
+					</div> <!-- /bgrid -->
+
+					<div class="bgrid feature animate-this">	
+
+						<span class="feature-count">05.</span>            
+
+					   <div class="feature-content">
+
+              	   	<h3>The Final Playlist</h3>
+
+							<p>After preparing songs to recommend, Dissonance creates a playlist on Spotify for users to listen easily. Here, integrating with Spotify makes easier all of these data flow.
+						   </p>
+						         		
+						</div> 	         	 
+
+					</div> <!-- /bgrid -->
+
+					<div class="bgrid feature animate-this">	
+
+						<span class="feature-count">06.</span>            
+
+					   <div class="feature-content">
+
+              	   	<h3>Chill!</h3>
+
+							<p>All users have to do is give their base song and preferences to Dissonance and they are ready to listen to some good music and chill!
+						   </p>
+						         		
+						</div> 	         	 
+
+					</div> <!-- /bgrid -->
+
+				</div> <!-- /features-list --> 				
+
+			</div> <!-- /features-wrap -->
+			
+		</section> <!-- /features -->
+		
+   		<section id="app">
+
+	   	<div class="overlap"></div>
+
+	   	<div class="row download-content" >
+	   		<div class="col-twelve">
+
+					<div class="text-part">
+						<h2 class="animate-this">TRY DISSONANCE NOW!</h2>
+
+			   		<p class="lead animate-this">Sign in with Spotify account, enter a base song and preferences, then you'll get the final playlist. It's that easy! </p>
+					</div>   			
+
+			   	<a class="button large animate-this" href="/login">
+			         TRY NOW!
+			      </a>  			
+
+	   		</div>
+	   	</div>
+   	</section> <!-- /download -->
+   
+
+		<!-- stats
+   	================================================== -->
+   	<section id="stats" class="count-up">
+
+			<div class="row half-grey">
+				<h2 style="color:black; margin-bottom: 50px;"> WHO WE ARE? </h2>
+				<div class="col-twelve">
+					<div class="block-1-6 block-s-1-3 block-tab-1-2 block-mob-full stats-list">
+
+						<div class="bgrid stat">
+
+							<div class="icon-part">
+								<img src="{% static "spotifyapp/images/burak.png" %}" alt="">
+							</div>
+
+							<h3 class="stat-title">
+								Burak
+							</h3>
+
+						</div> <!-- /stat -->					
+
+						<div class="bgrid stat">
+
+							<div class="icon-part">
+								<img src="{% static "spotifyapp/images/ugur.png" %}" alt="">
+							</div>
+
+							<h3 class="stat-title">
+								Uğur
+							</h3>
+
+						</div> <!-- /stat -->
+
+						<div class="bgrid stat">
+
+							<div class="icon-part">
+								<img src="{% static "spotifyapp/images/cem.png" %}" alt="">
+							</div>
+
+							<h3 class="stat-title">
+								Cem
+							</h3>
+
+						</div> <!-- /stat -->									
+
+						<div class="bgrid stat">
+
+							<div class="icon-part">
+								<img src="{% static "spotifyapp/images/arinc.png" %}" alt="">
+							</div>
+
+							<h3 class="stat-title">
+								Arınç
+							</h3>
+
+						</div> <!-- /stat -->
+
+						<div class="bgrid stat">
+
+							<div class="icon-part">
+								<img src="{% static "spotifyapp/images/yigit.png" %}" alt="">
+							</div>
+
+							<h3 class="stat-title">
+								Yiğitcan
+							</h3>
+
+						</div> <!-- /stat -->
+
+						<div class="bgrid stat">
+
+							<div class="icon-part">
+								<img src="{% static "spotifyapp/images/alien.png" %}" alt="">
+							</div>
+
+							<h3 class="stat-title">
+								Dissonance
+							</h3>
+
+						</div> <!-- /stat -->
+
+					</div> <!-- /stats-list -->
+
+				</div> <!-- /twelve -->
+			</div> <!-- /row -->
+
+		</section> <!-- /stats -->
+
+   </div> <!-- /main-content-wrap -->
+
+
+   <div id="go-top">
+		<a class="smoothscroll" title="Back to Top" href="#top"><i class="fa fa-long-arrow-up"></i></a>
+	</div>
+
+   <!-- preloader
+   ================================================== -->
+   <div id="preloader"> 
+    	<div id="loader"></div>
+   </div> 
+
+   <!-- Java Script
+   ================================================== --> 
+   <script src="{% static "spotifyapp/js/jquery-2.1.3.min.js" %}"></script>
+   <script src="{% static "spotifyapp/js/plugins.js" %}"></script>
+   <script src="{% static "spotifyapp/js/main.js" %}"></script>
+</body>
+
+</html>
